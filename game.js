@@ -677,7 +677,7 @@ dom.btnEvolutionOk.addEventListener('click', () => {
 
   // 게임 내 마루 이미지 변경 (기본적으로 성묘로 기본 아바타 교체)
   state.selectedAvatar = 'adult';
-  dom.maruPlayImg.src = 'assets/maru_adult.png?v=16';
+  dom.maruPlayImg.src = 'assets/maru_adult.png?v=18';
   
   // 꾸미기 팝업 내 선택 상태 동기화
   document.querySelectorAll('#avatar-options .customize-option').forEach(opt => {
