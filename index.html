@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마루의 포근한 모험 - Maru's Cozy Adventure</title>
+  
+  <!-- 구글 폰트: 부드럽고 귀여운 둥근 폰트 연동 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Gamja+Flower&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css?v=16">
+</head>
+<body>
+
+  <!-- 커스텀 고양이 발바닥 포인터 효과 (옵션) -->
+  <div id="custom-cursor"></div>
+
+  <!-- 전체 게임 앱 컨테이너 -->
+  <div class="app-container">
+    
+    <!-- 1. 메인 타이틀 화면 -->
+    <section id="screen-title" class="game-screen active">
+      <div class="sunbeam-overlay"></div>
+      <div class="floating-dusts"></div>
+      
+      <div class="title-content-box">
+        <div class="logo-area">
+          <span class="badge">힐링 고양이 성장 게임</span>
+          <h1 class="main-title">마루의 포근한 모험</h1>
+          <p class="subtitle">Maru's Cozy Adventure</p>
+        </div>
+        
+        <div class="character-preview-container">
+          <div class="preview-card">
+            <img src="assets/maru_kitten.png?v=16" alt="아기 마루" class="preview-img kitten active">
+            <img src="assets/maru_adult.png?v=16" alt="성묘 마루" class="preview-img adult">
+            <div class="sparkle-effects"></div>
+          </div>
+          <div class="preview-caption">새로운 집에 온 고양이 '마루'의 적응기</div>
+        </div>
+        
+        <div class="menu-buttons">
+          <button id="btn-start" class="btn primary-btn btn-grow">
+            <span class="icon">🐾</span> 모험 시작하기
+          </button>
+          <button id="btn-customize-open-main" class="btn secondary-btn">
+            <span class="icon">🎨</span> 마루 & 배경 꾸미기
+          </button>
+          <button id="btn-profile-book" class="btn secondary-btn">
+            <span class="icon">📖</span> 마루 성장 도감
+          </button>
+          <button id="btn-settings-open" class="btn icon-btn" title="설정">
+            <span class="icon">⚙️</span>
+          </button>
+        </div>
+      </div>
+      
+      <div class="footer-info">
+        &copy; 2026 Maru's Cozy Adventure. Created with Love ❤️ (v1.0.16)
+      </div>
+    </section>
+
+    <!-- 2. 마루 성장 도감 화면 -->
+    <section id="screen-profile" class="game-screen">
+      <div class="screen-header">
+        <button id="btn-profile-back" class="btn-back">
+          <span class="arrow">←</span> 뒤로가기
+        </button>
+        <h2>📖 마루 성장 앨범</h2>
+        <div class="spacer"></div>
+      </div>
+      
+      <div class="album-container">
+        
+        <!-- 아기 마루 카드 -->
+        <div class="album-card active" id="card-kitten">
+          <div class="card-badge baby">KITTEN (아기 시절)</div>
+          <div class="card-img-wrapper">
+            <img src="assets/maru_kitten.png?v=16" alt="아기 마루">
+          </div>
+          <div class="card-info">
+            <h3>아기 마루 🐱</h3>
+            <p class="flavor-text">낯선 집에 처음 왔을 때의 마루. 소심하고 호기심 가득한 눈으로 캣타워 해먹 위에서 세상을 바라보던 때입니다.</p>
+            <ul class="stats-list">
+              <li><strong>눈동자 색:</strong> <span class="val blue">신비로운 남청색 (Blue-Grey)</span></li>
+              <li><strong>성격:</strong> 조심스러움, 골골송 대장, 호기심쟁이</li>
+              <li><strong>좋아하는 것:</strong> 따뜻한 햇살, 캣타워 구석, 뒹굴거리기</li>
+              <li><strong>특기:</strong> 솜방망이 펀치 🐾</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 성묘 마루 카드 (처음엔 잠금 상태일 수 있음) -->
+        <div class="album-card locked" id="card-adult">
+          <div class="lock-overlay">
+            <div class="lock-content">
+              <span class="lock-icon">🔒</span>
+              <p>거실 적응도 100% 달성 시<br>성장 카드가 해금됩니다!</p>
+            </div>
+          </div>
+          <div class="card-badge adult">ADULT (성장한 마루)</div>
+          <div class="card-img-wrapper">
+            <img src="assets/maru_adult.png?v=16" alt="성묘 마루">
+          </div>
+          <div class="card-info">
+            <h3>위풍당당 마루 🦁</h3>
+            <p class="flavor-text">새로운 집에 완벽히 적응하여 온 집안의 귀여움을 독차지하는 늠름한 마루입니다. 통통한 볼살이 매력적이에요.</p>
+            <ul class="stats-list">
+              <li><strong>눈동자 색:</strong> <span class="val green">신비로운 연초록색 (Olive Green)</span></li>
+              <li><strong>성격:</strong> 위풍당당, 애교쟁이, 호기심 왕</li>
+              <li><strong>좋아하는 것:</strong> 맛있는 츄르, 치즈 모양 장난감, 투명 돔 캣타워</li>
+              <li><strong>특기:</strong> 캣타워 정복, 집사 쳐다보기 👀</li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- 3. 실시간 게임 플레이 화면 (거실 탐험) -->
+    <section id="screen-adventure" class="game-screen" style="background-image: url('assets/maru_bg_livingroom.png?v=16');">
+      
+      <!-- 상단 정보 바 -->
+      <div class="adventure-hud">
+        <div class="hud-left">
+          <button id="btn-hud-back" class="btn-back-hud" title="메인 화면으로">🏠</button>
+          <button id="btn-customize-open" class="btn-back-hud" title="마루 & 배경 꾸미기" style="font-size:15px; margin-left:5px;">🎨</button>
+          <div class="maru-status-tag">
+            <span id="maru-age-badge" class="age-badge baby">아기 마루</span>
+            <span class="maru-name">마루</span>
+          </div>
+        </div>
+        
+        <!-- 중앙: 적응도 게이지 -->
+        <div class="hud-center">
+          <div class="adaptability-container">
+            <div class="label-row">
+              <span class="lbl"><span class="icon">🏡</span> 거실 적응도</span>
+              <span id="txt-adaptability" class="val">0%</span>
+            </div>
+            <div class="progress-bar-outer">
+              <div id="bar-adaptability" class="progress-bar-inner" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 우측: 재화 및 아이템 보유 현황 -->
+        <div class="hud-right">
+          <div class="currency-item" title="츄르">
+            <span class="icon">🍖</span>
+            <span id="count-chur" class="count">0</span>
+          </div>
+          <div class="currency-item" title="치즈 장난감">
+            <span class="icon">🧀</span>
+            <span id="count-cheese" class="count">0</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 중앙 메인 탐험 영역 -->
+      <div class="adventure-playground" id="playground">
+        
+        <!-- 흩날리는 먼지/스파클 파티클 컨테이너 -->
+        <div class="playground-particles" id="playground-particles"></div>
+        
+        <!-- 마루 캐릭터 컨테이너 -->
+        <div class="maru-character-container" id="maru-char-box">
+          <div class="speech-bubble" id="speech-bubble">
+            <span id="speech-text">새로운 집은 조금 낯설다냐옹...</span>
+          </div>
+          <div class="maru-sprite-wrapper">
+            <img id="maru-play-img" src="assets/maru_kitten.png?v=16" alt="마루 캐릭터" class="maru-play-img float-anim">
+            <div class="shadow-ellipse"></div>
+          </div>
+        </div>
+
+        <!-- 힌트 메시지 -->
+        <div class="play-guide-hint">
+          💡 거실을 돌아다니는 <span class="hl">먼지 뭉치</span>를 터치하거나 <span class="hl">마루</span>를 쓰다듬어 적응도를 올리세요!
+        </div>
+        
+      </div>
+      
+      <!-- 하단 탐험 액션바 / 아이템 컨트롤러 -->
+      <div class="adventure-actionbar">
+        <div class="action-section items">
+          <h4>🎒 집사의 서랍장</h4>
+          <div class="items-row">
+            <button id="btn-use-chur" class="item-slot" disabled>
+              <div class="slot-icon">🍖</div>
+              <div class="slot-name">츄르 주기</div>
+              <div class="slot-effect">+15% 적응</div>
+              <span class="badge" id="slot-chur-count">0</span>
+            </button>
+            <button id="btn-use-cheese" class="item-slot" disabled>
+              <div class="slot-icon">🧀</div>
+              <div class="slot-name">치즈 인형</div>
+              <div class="slot-effect">+25% 적응</div>
+              <span class="badge" id="slot-cheese-count">0</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="action-section growth-trigger">
+          <!-- 거실 적응 완료 시 활성화되는 성장/진화 버튼 -->
+          <button id="btn-evolve" class="evolve-btn pulse-glow" disabled>
+            <span class="icon">✨</span> 폭풍 성장하기! <span class="icon">✨</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 4. 사운드 및 시스템 설정 팝업 모달 -->
+    <div id="modal-settings" class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3>⚙️ 게임 설정</h3>
+          <button id="btn-settings-close" class="btn-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="title">🎵 포근한 힐링 BGM</span>
+              <span class="desc">브라우저 내장 음원으로 감미로운 피아노 멜로디를 연주합니다.</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-bgm" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          
+          <div class="setting-item">
+            <div class="setting-info">
+              <span class="title">🔊 귀여운 고양이 효과음</span>
+              <span class="desc">클릭 효과음과 마루의 야옹 소리, 골골송을 켭니다.</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="toggle-sfx" checked>
+              <span class="slider round"></span>
+            </label>
+          </div>
+          
+          <div class="instruction-box">
+            <p>💡 본 게임은 추가적인 오디오 다운로드 없이, <strong>웹 오디오 기술(Web Audio API Synthersizer)</strong>로 실시간 힐링 사운드를 합성하여 연주합니다.</p>
+            <p style="margin-top: 6px; font-size: 9px; color: #aa9582; text-align: right; font-weight: 700;">App Version: v1.0.16 (Cache v16)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 성장/진화 성공 축하 팝업 모달 -->
+    <div id="modal-evolution" class="modal-overlay">
+      <div class="modal-box evolution-box">
+        <div class="sparkles-container"></div>
+        <div class="evolution-animation-wrapper">
+          <img src="assets/maru_kitten.png?v=16" alt="아기 마루" class="evo-img evo-kitten">
+          <div class="evo-flash"></div>
+          <img src="assets/maru_adult.png?v=16" alt="성묘 마루" class="evo-img evo-adult">
+        </div>
+        <h2 class="evo-title">🎉 축하합니다! 🎉</h2>
+        <h3>마루가 새로운 집에 완벽히 적응했습니다!</h3>
+        <p class="evo-desc">
+          낯설어하던 아기 마루가 드디어 늠름하고 사랑스러운 성묘로 성장하였습니다!<br>
+          이제 초록빛 맑은 눈동자를 반짝이며 집안 곳곳을 누빕니다. 🦁🐾
+        </p>
+        <button id="btn-evolution-ok" class="btn primary-btn btn-grow">늠름한 마루 쓰다듬어주기</button>
+      </div>
+    </div>
+
+    <!-- 6. 마루 & 배경 꾸미기 모달 -->
+    <div id="modal-customize" class="modal-overlay">
+      <div class="modal-box customize-box">
+        <div class="modal-header">
+          <h3>🎨 마루 & 배경 꾸미기</h3>
+          <button id="btn-customize-close" class="btn-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          
+          <!-- 아바타 선택 섹션 -->
+          <div class="customize-section">
+            <h4>🐱 고양이 아바타 선택</h4>
+            <div class="customize-options-grid" id="avatar-options">
+              
+              <!-- 아기 마루 -->
+              <div class="customize-option active" data-type="avatar" data-id="kitten" data-src="assets/maru_kitten.png?v=16">
+                <div class="option-img-wrapper">
+                  <img src="assets/maru_kitten.png?v=16" alt="아기 마루">
+                </div>
+                <span class="option-name">아기 마루</span>
+              </div>
+              
+              <!-- 성묘 마루 -->
+              <div class="customize-option locked" data-type="avatar" data-id="adult" data-src="assets/maru_adult.png?v=16" id="opt-avatar-adult">
+                <div class="lock-indicator">🔒</div>
+                <div class="option-img-wrapper">
+                  <img src="assets/maru_adult.png?v=16" alt="성묘 마루">
+                </div>
+                <span class="option-name">성묘 마루</span>
+              </div>
+              
+              <!-- 식빵 마루 -->
+              <div class="customize-option locked" data-type="avatar" data-id="loaf" data-src="assets/maru_loaf.png?v=16" id="opt-avatar-loaf">
+                <div class="lock-indicator">🔒</div>
+                <div class="option-img-wrapper">
+                  <img src="assets/maru_loaf.png?v=16" alt="식빵 마루">
+                </div>
+                <span class="option-name">식빵 마루</span>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- 배경 선택 섹션 -->
+          <div class="customize-section">
+            <h4>🏡 탐험 배경 선택</h4>
+            <div class="customize-options-grid" id="bg-options">
+              
+              <!-- 거실 배경 -->
+              <div class="customize-option active" data-type="bg" data-id="livingroom" data-src="assets/maru_bg_livingroom.png?v=16">
+                <div class="option-img-wrapper bg-thumb">
+                  <img src="assets/maru_bg_livingroom.png?v=16" alt="햇살 가득 거실">
+                </div>
+                <span class="option-name">햇살 거실</span>
+              </div>
+              
+              <!-- 침실 배경 -->
+              <div class="customize-option locked" data-type="bg" data-id="bedroom" data-src="assets/maru_bg_bedroom.png?v=16" id="opt-bg-bedroom">
+                <div class="lock-indicator">🔒</div>
+                <div class="option-img-wrapper bg-thumb">
+                  <img src="assets/maru_bg_bedroom.png?v=16" alt="아늑한 침실">
+                </div>
+                <span class="option-name">아늑 침실</span>
+              </div>
+              
+              <!-- 베란다 배경 -->
+              <div class="customize-option locked" data-type="bg" data-id="balcony" data-src="assets/maru_bg_balcony.png?v=16" id="opt-bg-balcony">
+                <div class="lock-indicator">🔒</div>
+                <div class="option-img-wrapper bg-thumb">
+                  <img src="assets/maru_bg_balcony.png?v=16" alt="푸른 베란다">
+                </div>
+                <span class="option-name">푸른 베란다</span>
+              </div>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="game.js?v=16"></script>
+</body>
+</html>
